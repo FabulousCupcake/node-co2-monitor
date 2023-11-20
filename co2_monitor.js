@@ -3,6 +3,9 @@ const os = require('os');
 const EventEmitter = require('events');
 const usb = require('usb');
 
+// Put back legacy usb v2.0 functions
+usb.setDebugLevel = usb.usb.setDebugLevel;
+
 /**
  * CO2-monitor Connection
  * @class Monitor
