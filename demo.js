@@ -1,7 +1,9 @@
 'use strict';
 const CO2Monitor = require('./co2_monitor');
 
-const monitor = new CO2Monitor();
+const monitor = new CO2Monitor({
+  debug: true,
+});
 
 // Connect device.
 monitor.connect((err) => {
