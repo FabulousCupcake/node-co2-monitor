@@ -56,8 +56,14 @@ class CO2Monitor extends EventEmitter {
         // Open device to use control methods.
         this._device.open();
         this._interface = this._device.interfaces[0];
-        // Detach linux kernel driver, or won't get endpoint connection.
-        if (os.platform() === 'linux' && this._interface.isKernelDriverActive()) {
+
+        // Detach kernel driver on linux and macos, or won't get endpoint connection.
+        if (
+                (
+                    os.platform() === 'darwin' ||
+                    os.platform() === 'linux'
+                ) && this._interface.isKernelDriverActive()
+        ){
             this._interface.detachKernelDriver();
         }
         if (!this._interface) {
